@@ -4,7 +4,7 @@ class Key < ActiveRecord::Base
 
   validates :key,
             :presence => true,
-            :length => { :within => 0..255 }
+            :length => { :within => 0..2000 }
 
   validates :title,
             :presence => true,
@@ -26,7 +26,10 @@ class Key < ActiveRecord::Base
   end
 
   def set_identifier
-    self.identifier = "#{user.identifier}_#{Time.now.to_i}"
+    self.identifier = "#{user.email}@#{Time.now.to_i}"
   end
 
+  def update_repository
+    CrhanGit::CrhanGit.new.add_key(self)
+  end
 end

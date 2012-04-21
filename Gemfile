@@ -39,8 +39,10 @@ gem 'jquery-rails'
 
 gem 'grit'
 gem 'devise'
-gem "gitolite", :git => "https://github.com/gitlabhq/gitolite-client.git"
+gem "gitolite", :git => "https://github.com/wingrunr21/gitolite.git"
+#gem "twitter-bootstrap-rails", "~> 2.0.6"
 gem "bootstrap-sass", "~> 2.0.2"
+
 
 gem "haml"
 gem "haml-rails"

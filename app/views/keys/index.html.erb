@@ -1,0 +1,11 @@
+<% for k in @keys %>
+  <div>
+    <p>
+      Title: <%= k.title %>
+    <br />
+    Key: <%= k.key %>
+  </p>
+</div>
+<% end %>
+
+<%= link_to "New Key", [:new, :key] %>

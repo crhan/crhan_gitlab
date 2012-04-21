@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120420154333) do
+ActiveRecord::Schema.define(:version => 20120421063446) do
 
   create_table "keys", :force => true do |t|
     t.integer  "user_id"
@@ -36,8 +36,9 @@ ActiveRecord::Schema.define(:version => 20120420154333) do
   create_table "user_projects", :force => true do |t|
     t.integer  "user_id"
     t.integer  "project_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "project_access", :default => 0
   end
 
   add_index "user_projects", ["project_id"], :name => "index_user_projects_on_project_id"

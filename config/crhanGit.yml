@@ -1,6 +1,6 @@
 git_host:
   system: crhanGit
-  admin_uri: git@localhost:gitolite_admin
+  admin_uri: git@localhost:gitolite-admin
   base_path: /home/git/repositories/
   host: vm1.crhan.info
   git_user: git

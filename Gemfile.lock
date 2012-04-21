@@ -1,8 +1,8 @@
 GIT
-  remote: https://github.com/gitlabhq/gitolite-client.git
-  revision: 36dabd226caa40ff052677719adaacbfe667b36c
+  remote: https://github.com/wingrunr21/gitolite.git
+  revision: 6c8935ceb8885ecb528ef4cc896c9d941db61be6
   specs:
-    gitolite (0.0.3.alpha)
+    gitolite (0.0.4.alpha)
       grit (~> 2.4.1)
       hashery (~> 1.4.0)
 
