@@ -1,0 +1,12 @@
+<div>
+  <p> Name: <%= @project.name %> </p>
+  <p> Path: <%= @project.path %> </p>
+  <p>Owner: <%= @project.owner.email %></p>
+  <p>description <%= @project.description %></p>
+</div>
+
+<div>
+  <%= link_to "Back to index", [:projects] %>
+  <%= link_to "Destroy", [:project], :method => :delete %>
+  <%= link_to "team_members", [@project, :team] %>
+</div>

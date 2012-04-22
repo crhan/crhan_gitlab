@@ -26,10 +26,14 @@ class Key < ActiveRecord::Base
   end
 
   def set_identifier
-    self.identifier = "#{user.email}@#{Time.now.to_i}"
+    self.identifier = "#{Time.now.to_i}"
   end
 
   def update_repository
     CrhanGit::CrhanGit.new.add_key(self)
+  end
+
+  def del_key
+    CrhanGit::CrhanGit.new.del_key(self)
   end
 end

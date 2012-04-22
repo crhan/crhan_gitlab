@@ -4,8 +4,11 @@
       Title: <%= k.title %>
     <br />
     Key: <%= k.key %>
+  <br />
+  <%= link_to "destroy", [k], :method => :delete %>
   </p>
 </div>
 <% end %>
 
 <%= link_to "New Key", [:new, :key] %>
+<%= link_to "Back to Projects", [:projects] %>

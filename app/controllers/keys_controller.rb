@@ -1,9 +1,11 @@
 class KeysController < ApplicationController
-  respond_to :html
-  before_filter :find_id, :only => [:show]
+  before_filter :authenticate_user!
+  respond_to :html, :json, :xml
+  before_filter :find_id, :only => [:show, :destroy]
 
   def index
     @keys = current_user.keys.all
+    respond_with(@keys)
   end
 
   def new
@@ -26,6 +28,16 @@ class KeysController < ApplicationController
     respond_with(@key)
   end
 
+  def destroy
+    Key.transaction do
+      @key.del_key
+      @key.destroy
+    end
+
+    respond_with(@key)
+  end
+
+  private
   def find_id
     @key = current_user.keys.find(params[:id])
   end

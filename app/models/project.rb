@@ -29,6 +29,10 @@ class Project < ActiveRecord::Base
     CrhanGit::CrhanGit.new.update_repo(self)
   end
 
+  def del_repo
+    CrhanGit::CrhanGit.new.del_repo(self)
+  end
+
   def repo_reader
     self.users.where("project_access = ?",UserProject::READER)
   end
@@ -40,5 +44,6 @@ class Project < ActiveRecord::Base
   def repo_master
     self.owner
   end
+
 
 end

@@ -1,4 +1,21 @@
 <h1>Hello</h1>
-I'm trying to write a page with Ruby
-<%= link_to "New Project", new_project_path %>
-<%= link_to "Show Keys", [:keys]%>
+<p>
+  I'm trying to write a page with Ruby
+</p>
+
+<div>
+  <%= link_to "New Project", new_project_path %>
+  <%= link_to "Show Keys", [:keys]%>
+</div>
+
+<div>
+  <p>
+    Here is the projects list:
+  </p>
+  <% for p in @projects %>
+  <div>
+    <p>Project name: <%= link_to  p.name, [p]%>
+    <p>Project owner: <%= p.owner.email %></p>
+  </div>
+  <% end %>
+</div>

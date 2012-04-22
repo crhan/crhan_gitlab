@@ -40,8 +40,20 @@ module CrhanGit
     end
 
     def add_key key
-      new_key = Gitolite::SSHKey.from_string(key.key, key.user.email, "#{Time.now.to_i}")
+      new_key = Gitolite::SSHKey.from_string(key.key, key.user.email, key.identifier)
       @ga_repo.add_key(new_key)
+      @ga_repo.save_and_apply
+    end
+
+    def del_key key
+      del_key = Gitolite::SSHKey.from_string(key.key, key.user.email, key.identifier)
+      @ga_repo.rm_key(del_key)
+      @ga_repo.save_and_apply
+    end
+
+    def del_repo repo
+      del_repo = @conf.get_repo(repo.name)
+      @conf.rm_repo(del_repo)
       @ga_repo.save_and_apply
     end
 

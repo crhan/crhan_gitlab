@@ -1,10 +1,12 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_id, :only => [:show]
+  before_filter :find_id, :only => [:show, :destroy]
   before_filter :check_key, :only => [:new]
+  respond_to :html, :xml, :json
 
   def index
     @projects = current_user.projects
+    respond_with(@projects)
   end
 
   def new
@@ -30,7 +32,15 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    render :text => @project.to_yaml
+    respond_with(@project)
+  end
+
+  def destroy
+    Project.transaction do
+      @project.del_repo
+      @project.destroy
+    end
+    respond_with(@project)
   end
 
   private
