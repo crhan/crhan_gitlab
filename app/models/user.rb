@@ -29,4 +29,10 @@ class User < ActiveRecord::Base
     self.user_projects.project_access
   end
 
+  def self.not_in_project project
+    in_user = project.users
+    all_user = User.all
+    all_user - in_user
+  end
+
 end

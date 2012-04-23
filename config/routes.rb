@@ -2,12 +2,16 @@ CrhanGit::Application.routes.draw do
   devise_for :users
 
   resources :projects do
-    get "team", :to => "projects#index_team"
+    resources :teams
+  end
+
+  namespace :admin do
+    resources :users
   end
 
   resources :keys, :except => [:edit, :update]
   root :to => "projects#index"
-  resources :projects
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

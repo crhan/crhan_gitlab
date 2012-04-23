@@ -1,0 +1,15 @@
+<ul>
+  <% @team_relation.each do |t| %>
+    <li>
+      <div>
+        Email: <%= t.user.email %> |
+        Access: <%= t.project_access %> |
+        <%= link_to "Edit", edit_project_team_path(@project, t) %>
+        <%= link_to "Destroy", project_team_path(@project, t), :method => :delete, :confirm => "are you sure?" %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Back to project", [@project] %> |
+<%= link_to "New team member", [:new, @project, :team] %>

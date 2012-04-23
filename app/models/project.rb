@@ -42,8 +42,11 @@ class Project < ActiveRecord::Base
   end
 
   def repo_master
-    self.owner
+    self.users.where("project_access = ?",UserProject::MASTER)
   end
 
+  def self.access_options
+    UserProject.access_roles
+  end
 
 end

@@ -1,0 +1,11 @@
+= form_for @team, :as => :member, :url => project_teams_path(@project, @team) do |f|
+  .clearfix
+    = f.label :user_id, "Name"
+    = f.select(:user_id, User.not_in_project(@project).collect { |p| [p.email, p.id] }, { :include_blank => "select user" })
+
+  .clearfix
+    = f.label :project_access, "Project access"
+    = f.select :project_access, options_for_select(Project.access_options), {}
+
+  .clearfix
+    = f.submit "add team member"

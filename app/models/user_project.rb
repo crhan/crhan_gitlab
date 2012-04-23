@@ -5,13 +5,14 @@ class UserProject < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
   # attr_accessible :title, :body
-  attr_accessible :project_access, :user
+  attr_protected :project_id, :project
 
   def self.access_roles
     {
-      "reader" => READER,
-      "writer" => WRITER,
-      "master" => MASTER
+      "Reader" => READER,
+      "Writer" => WRITER,
+      "Master" => MASTER
     }
   end
+
 end

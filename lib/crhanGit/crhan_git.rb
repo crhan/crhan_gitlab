@@ -24,9 +24,9 @@ module CrhanGit
       master = project.repo_master
 
       repo.clean_permissions
-      repo.add_permission("R", "", reader.email) unless reader.blank?
-      repo.add_permission("RW", "", writer.email) unless writer.blank?
-      repo.add_permission("RW+", "", master.email) unless master.blank?
+      repo.add_permission("R", "", *reader.map{|m| m.email}) unless reader.blank?
+      repo.add_permission("RW", "", *writer.map{|m| m.email}) unless writer.blank?
+      repo.add_permission("RW+", "", *master.map{|m| m.email}) unless master.blank?
 
       @conf.add_repo(repo, true)
       @ga_repo.save_and_apply
