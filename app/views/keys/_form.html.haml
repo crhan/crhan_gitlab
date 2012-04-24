@@ -1,0 +1,11 @@
+= form_for @key do |f|
+  %div
+    = f.label :title, 'Title'
+    %br/
+    = f.text_field :title
+  %div
+    = f.label :key, 'Key'
+    %br/
+    = f.text_area :key
+  %div
+    = f.submit "submit"

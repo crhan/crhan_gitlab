@@ -1,0 +1,13 @@
+= form_for @project do |f|
+  %div
+    = f.label :name, 'Name'
+    = f.text_field :name
+  %div
+    = f.label :path, 'Path'
+    = f.text_field :path
+  %div
+    = f.label :description, 'Description'
+    %br/
+    = f.text_area :description
+  %div
+    = f.submit "submit"

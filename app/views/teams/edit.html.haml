@@ -1,0 +1,11 @@
+= form_for @member, :as => :member, :url => project_team_path(@project, @member), :method => :put do |f|
+  .clearfix
+    Name:
+    = @team_member.email
+
+  .clearfix
+    = f.label :project_access, "Project access"
+    = f.select :project_access, options_for_select(Project.access_options, @team_member.user_projects.first.project_access)
+
+  .clearfix
+    = f.submit "edit team member access role"

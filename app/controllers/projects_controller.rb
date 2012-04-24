@@ -43,6 +43,12 @@ class ProjectsController < ApplicationController
     respond_with(@project)
   end
 
+  def index_team
+    @project = Project.find(params[:project_id])
+    @team_relation = @project.user_projects
+    respond_with(@team_members)
+  end
+
   private
   def find_id
     @project = Project.find(params[:id])

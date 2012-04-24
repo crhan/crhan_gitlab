@@ -1,0 +1,15 @@
+%div
+  %p
+    Name: #{@project.name}
+  %p
+    Path: #{@project.path}
+  %p
+    Owner: #{@project.owner.email}
+  %p
+    description #{@project.description}
+%div
+  = link_to "Back to index", [:projects]
+  |
+  = link_to "Destroy", [:project], :method => :delete
+  |
+  = link_to "team_members", [@project, :teams]
