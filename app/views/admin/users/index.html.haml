@@ -1,5 +1,10 @@
+.clearfix
+  .link= link_to "New user", new_admin_user_path
+
 %ul
   - @users.each do |u|
     %li
       email:
-      = u.email
+      = link_to u.email, [:admin, u]
+      |
+      = link_to "delete user", admin_user_path(u), :method => :delete, :confirm => "are you sure to delete this user(can't rollback)"

@@ -9,6 +9,8 @@ CrhanGit::Application.routes.draw do
     resources :users
   end
 
+  get 'profile', :to => 'profiles#show'
+
   resources :keys, :except => [:edit, :update]
   root :to => "projects#index"
 
