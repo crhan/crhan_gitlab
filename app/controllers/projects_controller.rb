@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   respond_to :html, :xml, :json
 
   def index
-    @projects = current_user.projects
+    @projects = Project.order("updated_at DESC")
     respond_with(@projects)
   end
 
@@ -36,17 +36,8 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    Project.transaction do
-      @project.del_repo
-      @project.destroy
-    end
+    @project.destroy
     respond_with(@project)
-  end
-
-  def index_team
-    @project = Project.find(params[:project_id])
-    @team_relation = @project.user_projects
-    respond_with(@team_members)
   end
 
   private

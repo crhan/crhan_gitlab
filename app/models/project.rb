@@ -23,6 +23,8 @@ class Project < ActiveRecord::Base
 
   validates :owner, :presence => true
 
+  before_destroy :del_repo
+
   #before_save :checkout_gitolite_admin
 
   def update_repository
