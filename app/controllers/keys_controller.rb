@@ -29,10 +29,7 @@ class KeysController < ApplicationController
   end
 
   def destroy
-    Key.transaction do
-      @key.del_key
-      @key.destroy
-    end
+    @key.destroy
 
     respond_with(@key)
   end

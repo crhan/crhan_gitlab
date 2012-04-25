@@ -13,6 +13,7 @@ class Key < ActiveRecord::Base
   validate  :unique_key
   before_save :set_identifier
   before_validation :strip_white_space
+  before_destroy :del_key
 
   def strip_white_space
     self.key = self.key.strip unless self.key.blank?
