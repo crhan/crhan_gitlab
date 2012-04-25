@@ -6,7 +6,9 @@ class UserProject < ActiveRecord::Base
   belongs_to :project
   # attr_accessible :title, :body
   attr_protected :project_id, :project
-  after_destroy :del_dep
+
+  before_destroy :update_repo
+  before_save :update_repo
 
   def self.access_roles
     {
@@ -16,7 +18,9 @@ class UserProject < ActiveRecord::Base
     }
   end
 
-  def del_dep
+  private
+
+  def update_repo
     CrhanGit::CrhanGit.new.update_repo(self.project)
   end
 

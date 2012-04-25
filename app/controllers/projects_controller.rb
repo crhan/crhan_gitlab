@@ -21,7 +21,6 @@ class ProjectsController < ApplicationController
       @project.save!
       @project.user_projects.create!(:project_access => UserProject::MASTER,
                                      :user => current_user)
-      @project.update_repository
     end
 
     if @project.valid?

@@ -14,6 +14,10 @@ class Key < ActiveRecord::Base
   before_save :set_identifier
   before_validation :strip_white_space
   before_destroy :del_key
+  before_create :update_repository
+
+
+  private
 
   def strip_white_space
     self.key = self.key.strip unless self.key.blank?
