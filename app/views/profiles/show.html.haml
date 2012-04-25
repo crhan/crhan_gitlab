@@ -1,0 +1,19 @@
+.nav
+  = link_to 'SSH Keys', keys_path
+  |
+  = link_to 'Change Password', edit_user_registration_path
+  - if @profile.is_admin?
+    |
+    = link_to "admin_area", admin_users_path
+
+.clearfix
+  %p
+    email:
+    = @profile.email
+
+  Own Projects:
+  %ul
+    - @profile.owns.each do |p|
+      %li
+        name:
+        = link_to p.name, project_path(p)

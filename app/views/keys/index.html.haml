@@ -1,0 +1,10 @@
+- for k in @keys
+  %div
+    %p
+      Title: #{k.title}
+      %br/
+      Key: #{k.key}
+      %br/
+      = link_to "destroy", [k], :method => :delete
+= link_to "New Key", [:new, :key]
+= link_to "Back to Projects", [:projects]
