@@ -1,13 +1,21 @@
-= form_for @project do |f|
-  %div
-    = f.label :name, 'Name'
-    = f.text_field :name
-  %div
-    = f.label :path, 'Path'
-    = f.text_field :path
-  %div
-    = f.label :description, 'Description'
-    %br/
-    = f.text_area :description
-  %div
-    = f.submit "submit"
+= render 'layouts/sub_nav'
+.row
+  .span12
+    %h2 New Project
+    %hr
+
+.row
+  .span12
+    = form_for @project, :html => { :class => "form-horizontal" } do |f|
+      .control-group
+        = f.label :name, 'Name', :class => 'control-label'
+        .controls
+          .input-prepend
+            %span.add-on #{GIT_HOST["git_user"]}@#{GIT_HOST["host"]}
+            = f.text_field :name, :class => 'span2'
+      .control-group
+        = f.label :description, 'Description', :class => "control-label"
+        .controls
+          = f.text_area :description, :class => "input-xlarge", :rows => 10
+      .form-actions
+        = f.submit "submit", :class => "btn btn-primary"

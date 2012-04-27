@@ -1,9 +1,5 @@
 .nav
-  = link_to 'SSH Keys', keys_path
-  |
-  = link_to 'Change Password', edit_user_registration_path
-  - if @profile.is_admin?
-    |
-    = link_to "admin_area", admin_users_path
 
 = render :partial => "show", :locals => {:profile => @profile}
+
+= render 'layouts/sub_nav'

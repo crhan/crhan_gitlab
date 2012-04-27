@@ -15,6 +15,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project])
+    @project.path = params[:project][:name]
     @project.owner = current_user
 
     Project.transaction do

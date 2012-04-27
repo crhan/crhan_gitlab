@@ -1,7 +1,15 @@
-%div
-  %p
-    Title: #{@key.title}
-  %p
-    Key: #{@key.key}
-%div
-  = link_to "Back to Index", [:keys]
+= render 'layouts/sub_nav'
+
+.row
+  .span12
+    %h2
+      Public key: #{@key.title}
+      %small created at #{@key.created_at.stamp("Aug 21, 2011")}
+    %hr
+.row
+  .span12
+    %pre= @key.key
+.row
+  .span12
+    .form-actions
+      = link_to "Remove", [@key], :method => :delete, :class => "btn btn-danger", :confirm => "Are you sure?"

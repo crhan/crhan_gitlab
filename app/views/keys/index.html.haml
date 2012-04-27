@@ -1,10 +1,21 @@
-- for k in @keys
-  %div
-    %p
-      Title: #{k.title}
-      %br/
-      Key: #{k.key}
-      %br/
-      = link_to "destroy", [k], :method => :delete
-= link_to "New Key", [:new, :key]
-= link_to "Back to Projects", [:projects]
+=render 'layouts/sub_nav'
+
+%h1
+  SSH Keys
+  = link_to "Add Key", [:new, :key], :class => "btn pull-right"
+  %hr
+
+- @keys.each do |k|
+  %table.table.table-striped
+    %tbody
+      %tr
+        %td
+          = link_to [k] do
+            %p
+              %strong= k.title
+        %td
+          %span.pull-right
+            Added
+            = time_ago_in_words(k.created_at)
+            ago
+        %td= link_to "Remove", [k], :method => :delete, :class => "btn btn-danger pull-right", :confirm => "Are you sure?"

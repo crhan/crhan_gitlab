@@ -1,0 +1,14 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      .brand= link_to "CrhanGit", root_path
+      %ul.nav
+        %li= link_to "Projects", [:projects], :class => "active"
+      %ul.nav.pull-right
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown"}
+            = current_user.email
+            %b.caret
+          %ul.dropdown-menu
+            %li= link_to "Profile", [:profile]
+            %li= link_to "Logout", [:destroy, :user, :session], :method => :delete
