@@ -1,5 +1,14 @@
-.nav
 
-= render :partial => "show", :locals => {:profile => @profile}
 
-= render 'layouts/sub_nav'
+= render 'layouts/subnav'
+
+%h2 Owned Projects
+
+%table.table.talbe-striped
+  %thead
+    %tr
+      %th Name
+      %th Owner
+      %th.pull-right Action
+  %tbody
+    = render :partial => 'projects/index', :locals => { :projects => @profile.owns }

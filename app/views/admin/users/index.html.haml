@@ -1,10 +1,23 @@
-.clearfix
-  .link= link_to "New user", new_admin_user_path
+= render 'admin/subnav'
 
-%ul
-  - @users.each do |u|
-    %li
-      email:
-      = link_to u.email, [:admin, u]
-      |
-      = link_to "delete user", admin_user_path(u), :method => :delete, :confirm => "are you sure to delete this user(can't rollback)"
+%h1
+  Admin
+  %small Users
+  = link_to "New User", [:new, :admin, :user], :class => 'btn pull-right'
+%hr
+
+%table.table.talbe-striped
+  %thead
+    %th Email
+    %th Admin?
+    %th Projects
+    %th Keys
+    %th Action
+  %tbody
+    - @users.each do |u|
+      %tr
+        %td= link_to u.email, [:admin, u]
+        %td= check_box_tag :admin, :admin, (true if u.admin), :disabled => true
+        %td= u.projects.count
+        %td= u.keys.count
+        %td= link_to "Delete User", admin_user_path(u), :method => :delete, :confirm => "are you sure to delete this user(can't rollback)", :class => "btn btn-danger"

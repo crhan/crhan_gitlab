@@ -1,18 +1,10 @@
-%div
-  = link_to "New Project", new_project_path
-  = link_to "Show Keys", [:keys]
-%div
-  %p
-    Here is the projects list:
-  - for p in @projects
-    %div
-      %p
-        Project name: 
-        = link_to  p.name, [p]
-      %p
-        Project owner: 
-        - if p.try(:owner)
-          = p.owner.email
-        - else
-          nil
+=render 'layouts/subnav'
 
+%h1
+  Projects
+  = link_to "New Project", [:new, :project], :class => "btn pull-right"
+%hr
+
+%table.table.table-striped
+  %tbody
+    = render :partial => "index", :locals => {:projects => @projects}

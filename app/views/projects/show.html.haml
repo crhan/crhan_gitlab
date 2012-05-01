@@ -1,15 +1,24 @@
-%div
-  %p
-    Name: #{@project.name}
-  %p
-    Path: #{@project.path}
-  %p
-    Owner: #{@project.owner.email}
-  %p
-    description #{@project.description}
-%div
-  = link_to "Back to index", [:projects]
-  |
-  = link_to "Destroy", [:project], :method => :delete
-  |
-  = link_to "team_members", [@project, :teams]
+= render 'layouts/subnav'
+
+= render :partial => 'navtabs', :locals => { :p=> @project }
+
+.page-header
+  %h1= @project.name
+
+.well
+  .input-prepend.form-inline
+    %span.add-on> git clone
+    %input{ :value => "git@#{GIT_HOST["host"]}:#{@project.name}.git" }
+
+- unless @project.description.blank?
+  %h3 Description
+  .well
+    = @project.description
+
+-#
+  %div
+    = link_to "Back to index", [:projects]
+    |
+    = link_to "Destroy", [:project], :method => :delete
+    |
+    = link_to "team_members", [@project, :teams]

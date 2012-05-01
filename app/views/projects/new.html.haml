@@ -1,4 +1,4 @@
-= render 'layouts/sub_nav'
+= render 'layouts/subnav'
 .row
   .span12
     %h2 New Project
@@ -10,8 +10,8 @@
       .control-group
         = f.label :name, 'Name', :class => 'control-label'
         .controls
-          .input-prepend
-            %span.add-on #{GIT_HOST["git_user"]}@#{GIT_HOST["host"]}
+          .input-prepend<
+            %span.add-on #{GIT_HOST["git_user"]}@#{GIT_HOST["host"]}:
             = f.text_field :name, :class => 'span2'
       .control-group
         = f.label :description, 'Description', :class => "control-label"

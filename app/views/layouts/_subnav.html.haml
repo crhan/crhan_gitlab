@@ -5,7 +5,5 @@
         = link_to "SSH Keys", [:keys]
       %li{:class => "#{'active' if current_page?(edit_user_registration_path)}"}
         = link_to 'Change Password', edit_user_registration_path
-      %li= link_to 'Create Project', [:new,:project]
-      - if current_user.is_admin?
-        %li.divider-vertical
-        %li= link_to "Admin", admin_users_path
+      %li{:class => "#{'active' if current_page?(new_project_path)}"}
+        = link_to 'Create Project', [:new,:project]

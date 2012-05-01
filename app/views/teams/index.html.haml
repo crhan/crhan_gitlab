@@ -1,11 +1,35 @@
-%ul
-  - @team_relation.each do |t|
-    %li
-      %div
-        Email: #{t.user.email} |
-        Access: #{t.project_access} |
-        \#{link_to "Edit", edit_project_team_path(@project, t)}
-        \#{link_to "Destroy", project_team_path(@project, t), :method => :delete, :confirm => "are you sure?"}
-= link_to "Back to project", [@project]
-|
-\#{link_to "New team member", [:new, @project, :team]}
+= render 'layouts/subnav'
+
+= render :partial => 'projects/navtabs', :locals => { :p => Project.find(params[:project_id]) }
+
+.row
+  .span8
+    %table.table.table-striped
+      %tbody
+        - @team_relation.each do |t|
+          %tr
+            %td= link_to t.user.email, edit_project_team_path(@project, t)
+            %td= t.project_access
+            %td
+              - if is_owner?(t)
+                %span.label.label-invers ProjectOwner
+
+  .span4
+    .page-header
+      %h3 Control Your Team
+    %table.table-condensed.table-bordered.table
+      %thead
+        %th{:colspan => 2} Permission
+      %tbody
+        %tr
+          %td MASTER
+          %td Do anything to repo, except destroy(Only owner could)
+        %tr
+          %td WRITER
+          %td Could push to repo, can't re-wind
+        %tr
+          %td READER
+          %td Default permission, only read this repo
+
+    = link_to "New member", [:new, @project, :team], :class => "btn"
+

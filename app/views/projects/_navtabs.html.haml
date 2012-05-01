@@ -1,0 +1,8 @@
+%ul.nav.nav-tabs
+  %li{ :class => "#{"active" if current_page?(project_path(p))}" }
+    = link_to "Info", [p]
+  %li{ :class => "#{"active" if controller.controller_name == "teams"}" }
+    = link_to "Team", [p, :teams]
+  %li{ :class => "#{"active" if current_page?(edit_project_path(p))}" }
+    = link_to "Edit", [:edit, p]
+

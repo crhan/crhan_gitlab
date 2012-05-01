@@ -1,11 +1,18 @@
-= form_for @team, :as => :member, :url => project_teams_path(@project, @team) do |f|
-  .clearfix
-    = f.label :user_id, "Name"
-    = f.select(:user_id, User.not_in_project(@project).collect { |p| [p.email, p.id] }, { :include_blank => "select user" })
+= render 'layouts/subnav'
 
-  .clearfix
-    = f.label :project_access, "Project access"
-    = f.select :project_access, options_for_select(Project.access_options), {}
+= render :partial => 'projects/navtabs', :locals => { :p => Project.find(params[:project_id]) }
 
-  .clearfix
-    = f.submit "add team member"
+= form_for @team, :as => :member, :url => project_teams_path(@project, @team), :html => { :class => "form-horizontal" } do |f|
+  .control-group
+    = f.label :user_id, "Name", :class => "control-label"
+    .controls
+      = f.select(:user_id, User.not_in_project(@project).collect { |p| [p.email, p.id] }, { :include_blank => "select user" })
+
+  .control-group
+    = f.label :project_access, "Project access", :class => "control-label"
+    .controls
+      = f.select :project_access, options_for_select(Project.access_options), {}
+
+  .form-actions
+    = f.submit "Add Member", :class => "btn btn-primary"
+    = link_to "Back", [@project, :teams], :class => "btn"

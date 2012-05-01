@@ -21,7 +21,7 @@ class Admin::UsersController < ApplicationController
     admin = params[:user].delete(:admin)
     @admin_user = User.new(params[:user])
     @admin_user.admin = admin
-    @admin_user.save!
+    @admin_user.save
     respond_with @admin_user, :location => [:admin,:users]
   end
 

@@ -1,22 +1,26 @@
-= form_for [:admin, @admin_user] do |f|
+= form_for [:admin, @admin_user] ,:html => {:class => 'form-horizontal'} do |f|
   - if @admin_user.errors.any?
     #error_explanation
       %ul
         - @admin_user.errors.full_messages.each do |msg|
           %li= msg
+  .control-group
+    = f.label :email, :class => 'control-label'
+    .controls
+      = f.text_field :email, :class => "input-xlarge"
+  .control-group
+    = f.label :password, :class => "control-label"
+    .controls
+      = f.password_field :password, :class => "input-xlarge"
+  .control-group
+    = f.label :password_confirmation, :class => 'control-label'
+    .controls
+      = f.password_field :password_confirmation, :class => 'input-xlarge'
+  .control-group
+    .controls
+      = f.label :admin, :class => 'checkbox' do
+        = f.check_box :admin
+        Admin?
 
-  .clearfix
-    = f.label :email
-    = f.text_field :email
-  .clearfix
-    = f.label :password
-    = f.password_field :password
-  .clearfix
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-
-  .clearfix
-    = f.label :admin
-    = f.check_box :admin
-  .clearfix
-    = f.submit
+  .form-actions
+    = f.submit :class => "btn btn-primary"

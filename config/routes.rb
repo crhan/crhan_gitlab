@@ -1,12 +1,12 @@
 CrhanGit::Application.routes.draw do
   devise_for :users
 
-  resources :projects do
-    resources :teams
+  namespace :admin do
+    resources :users, :projects
   end
 
-  namespace :admin do
-    resources :users
+  resources :projects do
+    resources :teams
   end
 
   get 'profile', :to => 'profiles#show'

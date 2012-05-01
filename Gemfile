@@ -18,8 +18,8 @@ group :assets do
   # gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem "bootstrap-sass", "~> 2.0.2"
-  #gem "twitter-bootstrap-rails", "~> 2.0.6"
+  #gem "bootstrap-sass", "~> 2.0.2"
+  gem "twitter-bootstrap-rails", "~> 2.0.6"
 end
 
 gem "therubyracer"
@@ -51,3 +51,8 @@ gem "haml-rails"
 gem "seed-fu"
 gem "faker"
 gem "stamp"
+
+group :development do
+  gem 'pry-rails'
+  gem 'pry-doc'
+end

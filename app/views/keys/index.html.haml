@@ -1,4 +1,4 @@
-=render 'layouts/sub_nav'
+=render 'layouts/subnav'
 
 %h1
   SSH Keys
@@ -14,7 +14,7 @@
             %p
               %strong= k.title
         %td
-          %span.pull-right
+          %small.pull-right
             Added
             = time_ago_in_words(k.created_at)
             ago
