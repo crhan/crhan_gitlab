@@ -1,0 +1,9 @@
+.row
+  .subnav
+    %ul.nav.nav-pills
+      %li{:class => "#{'active' if controller.controller_name == "keys"}"}
+        = link_to "SSH Keys", [:keys]
+      %li{:class => "#{'active' if current_page?(edit_user_registration_path)}"}
+        = link_to 'Change Password', edit_user_registration_path
+      %li{:class => "#{'active' if current_page?(new_project_path)}"}
+        = link_to 'Create Project', [:new,:project]

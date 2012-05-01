@@ -16,11 +16,7 @@ class KeysController < ApplicationController
   def create
     @key = current_user.keys.new(params[:key])
 
-    Key.transaction do
-      @key.save!
-      @key.update_repository
-    end
-
+    @key.save!
     respond_with(@key)
   end
 

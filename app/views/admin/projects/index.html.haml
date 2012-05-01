@@ -1,0 +1,27 @@
+=render 'layouts/subnav'
+
+%h1
+  Admin
+  %small Projects
+  = link_to "New Project", [:new, :project], :class => "btn pull-right"
+%hr
+
+%table.table.table-striped
+  %thead
+    %th Project Name
+    %th Members
+    %th Owner
+    %th Action
+  %tbody
+    - @admin_projects.each do |p|
+      %tr
+        %td
+          = link_to [p] do
+            %p
+              %strong= p.name
+        %td= p.user_projects.count
+        %td
+          %small
+            = owner_email(p)
+        %td= link_to "Remove", [p], :method => :delete, :class => "btn btn-danger", :confirm => "Are you sure?"
+

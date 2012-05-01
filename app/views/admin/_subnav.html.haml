@@ -1,0 +1,7 @@
+.row
+  .subnav
+    %ul.nav.nav-pills
+      %li{:class => "#{'active' if controller.controller_name == "users"}"}
+        = link_to "Users", [:admin, :users]
+      %li{:class => "#{'active' if controller.controller_name == "projects"}"}
+        = link_to "Projects", [:admin, :projects]

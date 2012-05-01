@@ -1,0 +1,2 @@
+= render :partial => "profiles/show", :locals => {:profile => @admin_user}
+.clearfix= link_to "delete user", [:admin, @admin_user], :method => :delete, :confirm => "are you sure?"

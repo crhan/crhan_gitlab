@@ -1,11 +1,22 @@
-= form_for @member, :as => :member, :url => project_team_path(@project, @member), :method => :put do |f|
-  .clearfix
-    Name:
-    = @team_member.email
+= render 'layouts/subnav'
+= render :partial => 'projects/navtabs', :locals => { :p => @member.project}
 
-  .clearfix
-    = f.label :project_access, "Project access"
-    = f.select :project_access, options_for_select(Project.access_options, @team_member.user_projects.first.project_access)
+.page-header
+  %h1 Team member
+= form_for @member, :html => {:class => "form-horizontal" }, :as => :member, :url => project_team_path(@project, @member), :method => :put do |f|
+  %table.table
+    %tbody
+      %tr
+        %td Email
+        %td= @member.user.email
+      %tr
+        %td Member since
+        %td= @member.created_at.stamp("Apr 22, 2012")
+      %tr
+        %td Access
+        %td= f.select :project_access, options_for_select(Project.access_options, @team_member.user_projects.first.project_access)
 
-  .clearfix
-    = f.submit "edit team member access role"
+  .form-actions
+    = f.submit "Update Access", :class => "btn btn-primary"
+    = link_to "Back", project_teams_path, :class => "btn"
+    = link_to "Remove member", project_team_path(@member), :method => :delete, :confirm => "Are you sure", :class => "btn btn-danger pull-right"

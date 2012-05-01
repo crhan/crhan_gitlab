@@ -1,11 +1,13 @@
-= form_for @key do |f|
-  %div
-    = f.label :title, 'Title'
-    %br/
-    = f.text_field :title
-  %div
-    = f.label :key, 'Key'
-    %br/
-    = f.text_area :key
-  %div
-    = f.submit "submit"
+= form_for @key, :html => {:class => "form-horizontal"} do |f|
+  %fieldset
+    .control-group
+      = f.label :title, 'Title', :class => "control-label"
+      .controls
+        = f.text_field :title, :class => "input-xlarge"
+    .control-group
+      = f.label :key, 'Key', :class => "control-label"
+      .controls
+        = f.text_area :key, :class => "input-xxlarge", :rows => 10
+    .form-actions
+      = f.submit :class => "btn btn-primary"
+      = link_to "Cancel", [:keys], :class => 'btn'

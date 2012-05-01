@@ -1,13 +1,15 @@
 CrhanGit::Application.routes.draw do
   devise_for :users
 
+  namespace :admin do
+    resources :users, :projects
+  end
+
   resources :projects do
     resources :teams
   end
 
-  namespace :admin do
-    resources :users
-  end
+  get 'profile', :to => 'profiles#show'
 
   resources :keys, :except => [:edit, :update]
   root :to => "projects#index"

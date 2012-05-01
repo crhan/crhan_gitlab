@@ -1,0 +1,10 @@
+- projects.each do |p|
+  %tr
+    %td
+      = link_to [p] do
+        %p
+          %strong= p.name
+    %td
+      %small
+        = owner_email(p)
+    %td= link_to "Remove", [p], :method => :delete, :class => "btn btn-danger pull-right", :confirm => "Are you sure?"

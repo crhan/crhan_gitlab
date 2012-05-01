@@ -1,11 +1,11 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_id, :only => [:show, :destroy]
+  before_filter :find_id, :only => [:show, :destroy, :edit, :update]
   before_filter :check_key, :only => [:new]
   respond_to :html, :xml, :json
 
   def index
-    @projects = current_user.projects
+    @projects = Project.order("updated_at DESC")
     respond_with(@projects)
   end
 
@@ -14,14 +14,15 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    owner_id = params[:project].delete(:owner)
     @project = Project.new(params[:project])
-    @project.owner = current_user
+    @project.path = params[:project][:name]
+    @project.owner = User.find(owner_id)
 
     Project.transaction do
       @project.save!
       @project.user_projects.create!(:project_access => UserProject::MASTER,
                                      :user => current_user)
-      @project.update_repository
     end
 
     if @project.valid?
@@ -36,17 +37,17 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    Project.transaction do
-      @project.del_repo
-      @project.destroy
-    end
+    @project.destroy
     respond_with(@project)
   end
 
-  def index_team
-    @project = Project.find(params[:project_id])
-    @team_relation = @project.user_projects
-    respond_with(@team_members)
+  def edit
+  end
+
+  def update
+    owner_id = params[:project].delete(:owner)
+    @project.description = params[:project][:description]
+    @project.owner = User.find(owner_id)
   end
 
   private
