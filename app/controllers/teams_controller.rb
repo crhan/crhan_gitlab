@@ -14,7 +14,7 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @project = current_user.projects.find(params[:project_id])
+    @project = Project.find(params[:project_id])
     UserProject.transaction do
       @member = UserProject.new(params[:member])
       @member.project = @project

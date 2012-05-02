@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_id, :only => [:show, :destroy]
+  before_filter :find_id, :only => [:show, :destroy, :edit, :update]
   before_filter :check_key, :only => [:new]
   respond_to :html, :xml, :json
 
@@ -14,9 +14,10 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    owner_id = params[:project].delete(:owner)
     @project = Project.new(params[:project])
     @project.path = params[:project][:name]
-    @project.owner = current_user
+    @project.owner = User.find(owner_id)
 
     Project.transaction do
       @project.save!
@@ -38,6 +39,15 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_with(@project)
+  end
+
+  def edit
+  end
+
+  def update
+    owner_id = params[:project].delete(:owner)
+    @project.description = params[:project][:description]
+    @project.owner = User.find(owner_id)
   end
 
   private

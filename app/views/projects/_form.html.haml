@@ -1,0 +1,18 @@
+= form_for @project, :html => { :class => "form-horizontal" } do |f|
+  .control-group
+    = f.label :name, 'Name', :class => 'control-label'
+    .controls
+      .input-prepend<
+        %span.add-on #{GIT_HOST["git_user"]}@#{GIT_HOST["host"]}:
+        = f.text_field :name, :class => 'span2', :disabled => !@project.new_record?
+  .control-group
+    = f.label :description, 'Description', :class => "control-label"
+    .controls
+      = f.text_area :description, :class => "input-xlarge", :rows => 10
+  .control-group
+    = f.label :owner, 'Owner', :class => 'control-label'
+    .controls
+      = f.select :owner, options_for_select(User.all.collect{ |p| [p.email, p.id] }, default_owner(@project)),
+        {}, :disabled => disable_edit_owner?(@project)
+  .form-actions
+    = f.submit "submit", :class => "btn btn-primary"

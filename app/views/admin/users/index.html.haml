@@ -12,12 +12,14 @@
     %th Admin?
     %th Projects
     %th Keys
-    %th Action
+    %th.action3 Action
   %tbody
     - @users.each do |u|
       %tr
-        %td= link_to u.email, [:admin, u]
+        %td= u.email
         %td= check_box_tag :admin, :admin, (true if u.admin), :disabled => true
         %td= u.projects.count
         %td= u.keys.count
-        %td= link_to "Delete User", admin_user_path(u), :method => :delete, :confirm => "are you sure to delete this user(can't rollback)", :class => "btn btn-danger"
+        %td
+          = link_to "Edit", edit_admin_user_path(u), :class => "btn"
+          = link_to "Delete User", admin_user_path(u), :method => :delete, :confirm => "are you sure to delete this user(can't rollback)", :class => "btn btn-danger"

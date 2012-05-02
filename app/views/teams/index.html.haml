@@ -9,10 +9,12 @@
         - @team_relation.each do |t|
           %tr
             %td= link_to t.user.email, edit_project_team_path(@project, t)
-            %td= t.project_access
+            %td
+              %span.label.label-success= show_access(t.project_access)
             %td
               - if is_owner?(t)
                 %span.label.label-invers ProjectOwner
+            %td#action1= link_to "Edit", edit_project_team_path(@project, t), :class => "btn"
 
   .span4
     .page-header

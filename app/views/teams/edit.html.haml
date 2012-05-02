@@ -19,4 +19,4 @@
   .form-actions
     = f.submit "Update Access", :class => "btn btn-primary"
     = link_to "Back", project_teams_path, :class => "btn"
-    = link_to "Remove member", project_team_path(@member), :method => :delete, :confirm => "Are you sure", :class => "btn btn-danger"
+    = link_to "Remove member", project_team_path(@member), :method => :delete, :confirm => "Are you sure", :class => "btn btn-danger pull-right"
