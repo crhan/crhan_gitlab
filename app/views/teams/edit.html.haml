@@ -14,9 +14,9 @@
         %td= @member.created_at.stamp("Apr 22, 2012")
       %tr
         %td Access
-        %td= f.select :project_access, options_for_select(Project.access_options, @team_member.user_projects.first.project_access)
+        %td= f.select :project_access, options_for_select(Project.access_options, @member.project_access)
 
   .form-actions
     = f.submit "Update Access", :class => "btn btn-primary"
     = link_to "Back", project_teams_path, :class => "btn"
-    = link_to "Remove member", project_team_path(@member), :method => :delete, :confirm => "Are you sure", :class => "btn btn-danger pull-right"
+    = link_to "Remove member", project_team_path(@project, @member), :method => :delete, :confirm => "Are you sure", :class => "btn btn-danger pull-right"

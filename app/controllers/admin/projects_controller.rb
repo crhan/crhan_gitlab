@@ -21,7 +21,7 @@ class Admin::ProjectsController < ApplicationController
   def create
     @admin_project = Project.new(params[:project])
     @admin_project.owner = current_user
-    @admin_project.save!
+    @admin_project.save
     respond_with @admin_project
   end
 
@@ -31,12 +31,13 @@ class Admin::ProjectsController < ApplicationController
   end
 
   def update
-    ownder_id = params[:project].delete(:owner_id)
+    owner_id = params[:project][ :owner ]
 
     @admin_project.owner = User.find(owner_id) if owner_id
+    @admin_project.description = params[:project][:description]
+    @admin_project.save
 
-    @admin_project.update_attributes!(params[:project])
-    respond_with @admin_project
+    respond_with @admin_project, :location => [:admin, :projects]
   end
 
   private

@@ -48,6 +48,9 @@ class ProjectsController < ApplicationController
     owner_id = params[:project].delete(:owner)
     @project.description = params[:project][:description]
     @project.owner = User.find(owner_id)
+    @project.save
+
+    respond_with(@project)
   end
 
   private
