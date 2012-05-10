@@ -16,7 +16,6 @@ class ProjectsController < ApplicationController
   def create
     owner_id = params[:project].delete(:owner)
     @project = Project.new(params[:project])
-    @project.path = params[:project][:name]
     @project.owner = User.find(owner_id)
 
     Project.transaction do

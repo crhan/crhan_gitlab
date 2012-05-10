@@ -8,7 +8,7 @@
 .well
   .input-prepend.form-inline
     %span.add-on> git clone
-    %input{ :value => "git@#{GIT_HOST["host"]}:#{@project.name}.git" }
+    %input.span6{ :value => "git@#{GIT_HOST["host"]}:#{@project.path}.git" }
 
 - unless @project.description.blank?
   %h3 Description
