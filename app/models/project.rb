@@ -24,6 +24,7 @@ class Project < ActiveRecord::Base
   validates :owner, :presence => true
 
   before_destroy :del_repo
+  before_save :update_path
 
   #before_save :checkout_gitolite_admin
 
@@ -49,6 +50,11 @@ class Project < ActiveRecord::Base
 
   def self.access_options
     UserProject.access_roles
+  end
+
+  private
+  def update_path
+    self.path = self.name.gsub(/\s+/,"_").downcase
   end
 
 end
