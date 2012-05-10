@@ -56,3 +56,4 @@ group :development do
   gem 'pry-rails'
   gem 'pry-doc'
 end
+gem 'resque'
