@@ -3,6 +3,7 @@ CrhanGit::Application.routes.draw do
 
   namespace :admin do
     resources :users, :projects
+    mount Resque::Server.new, :at => '/resque', :as => "resque"
   end
 
   resources :projects do
