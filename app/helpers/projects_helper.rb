@@ -19,4 +19,8 @@ module ProjectsHelper
   def disable_edit_owner?(project)
     !(current_user.admin or current_user == project.owner)
   end
+
+  def project_clone_path project
+    "git@#{GIT_HOST["host"]}:#{project.path}.git"
+  end
 end

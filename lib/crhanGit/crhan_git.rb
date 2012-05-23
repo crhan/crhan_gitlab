@@ -30,6 +30,7 @@ module CrhanGit
 
       @conf.add_repo(repo, true)
       @ga_repo.save_and_apply
+      rm_local_dir
     end
 
     def pull
@@ -43,19 +44,29 @@ module CrhanGit
       new_key = Gitolite::SSHKey.from_string(key.key, key.user.email, key.identifier)
       @ga_repo.add_key(new_key)
       @ga_repo.save_and_apply
+      rm_local_dir
     end
 
     def del_key key
       del_key = Gitolite::SSHKey.from_string(key.key, key.user.email, key.identifier)
       @ga_repo.rm_key(del_key)
       @ga_repo.save_and_apply
+      rm_local_dir
     end
 
     def del_repo repo
       del_repo = @conf.get_repo(repo.name)
       @conf.rm_repo(del_repo)
       @ga_repo.save_and_apply
+      rm_local_dir
     end
+
+    def rm_local_dir
+      puts "removing #{@local_dir}"
+      FileUtils.remove_dir @local_dir
+      puts "#{@local_dir} removed"
+    end
+
 
   end
 end

@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.order("updated_at DESC")
+    @last_5_activities = Event.limit(5)
     respond_with(@projects)
   end
 
@@ -16,14 +17,12 @@ class ProjectsController < ApplicationController
   def create
     owner_id = params[:project].delete(:owner)
     @project = Project.new(params[:project])
-    @project.path = params[:project][:name]
     @project.owner = User.find(owner_id)
+    @project.current_user_id = current_user.id
 
-    Project.transaction do
-      @project.save!
-      @project.user_projects.create!(:project_access => UserProject::MASTER,
-                                     :user => current_user)
-    end
+    @project.save
+    # create owner as the master
+    @project.set_owner_as_master
 
     if @project.valid?
       redirect_to @project, :notice => "Project created successfully"
@@ -33,6 +32,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @events = @project.events.limit(5)
     respond_with(@project)
   end
 
@@ -48,11 +48,16 @@ class ProjectsController < ApplicationController
     owner_id = params[:project].delete(:owner)
     @project.description = params[:project][:description]
     @project.owner = User.find(owner_id)
+    @project.current_user_id = current_user.id
+    @project.save
+
+    respond_with(@project)
   end
 
   private
   def find_id
     @project = Project.find(params[:id])
+    @current_user = current_user
   end
 
   def check_key

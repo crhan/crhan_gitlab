@@ -19,13 +19,12 @@ class TeamsController < ApplicationController
       @member = UserProject.new(params[:member])
       @member.project = @project
       @member.save!
-      CrhanGit::CrhanGit.new.update_repo(@project)
     respond_with(@member, :location => project_teams_path)
     end
   end
 
   def destroy
-    @project = current_user.projects.find(params[:project_id])
+    @project = Project.find(params[:project_id])
     @member = @project.user_projects.find(params[:id])
     UserProject.transaction do
       @member.destroy
@@ -43,11 +42,7 @@ class TeamsController < ApplicationController
   def update
     @project = current_user.projects.find(params[:project_id])
     @member = UserProject.find(params[:id])
-    UserProject.transaction do
-      @member.update_attributes(params[:member])
-      @member.save!
-      CrhanGit::CrhanGit.new.update_repo(@project)
-    end
+    @member.update_attributes(params[:member])
     respond_with(@member, :location => project_teams_path)
   end
 

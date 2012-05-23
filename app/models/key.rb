@@ -15,6 +15,7 @@ class Key < ActiveRecord::Base
   before_validation :strip_white_space
   before_destroy :del_key
   before_create :update_repository
+  delegate :email, :to => :user, :prefix => true
 
 
   private

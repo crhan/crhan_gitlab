@@ -1,4 +1,4 @@
-=render 'layouts/subnav'
+=render 'admin/subnav'
 
 %h1
   Admin
@@ -23,5 +23,7 @@
         %td
           %small
             = owner_email(p)
-        %td= link_to "Remove", [p], :method => :delete, :class => "btn btn-danger", :confirm => "Are you sure?"
+        %td
+          = link_to "Edit", edit_admin_project_path(p), :class => "btn"
+          = link_to "Remove", [p], :method => :delete, :class => "btn btn-danger", :confirm => "Are you sure?"
 

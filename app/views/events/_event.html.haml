@@ -1,0 +1,14 @@
+%li
+  = event.author_email
+  - if event.push?
+    %span.label.label-warning PUSHED
+    to ref at
+  - if event.create?
+    %span.label.label-success CREATED
+    Project Named
+  - if event.update?
+    %span.label.label-info UPDATED
+    Project Info at
+  = link_to event.project_name, [event.project], :class => 'label label-inverse'
+  = time_ago_in_words(event.created_at)
+  ago

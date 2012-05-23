@@ -5,3 +5,4 @@
         = link_to "Users", [:admin, :users]
       %li{:class => "#{'active' if controller.controller_name == "projects"}"}
         = link_to "Projects", [:admin, :projects]
+      %li= link_to "Resque Stats", admin_resque_path

@@ -1,0 +1,10 @@
+= render "admin/subnav"
+
+.page-header
+  %h1
+    Admin Edit
+    %small= @admin_project.name
+
+= form_for @admin_project, :url => admin_project_path(@admin_project), :html => { :class => "form-horizontal" } do |f|
+  = render :partial => 'projects/form', :locals => { :project => @admin_project, :f => f}
+
