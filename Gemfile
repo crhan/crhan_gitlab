@@ -1,13 +1,8 @@
 source 'http://ruby.taobao.org'
 
 gem 'rails', '3.2.3'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'sqlite3'
-
-
+#
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -18,42 +13,25 @@ group :assets do
   # gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  #gem "bootstrap-sass", "~> 2.0.2"
   gem "twitter-bootstrap-rails", "~> 2.0.6"
 end
 
 gem "therubyracer"
 gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem 'grit'
-gem 'devise'
+gem 'grit', "~> 2.5.0"
+gem 'devise', "~> 2.0.4"
 gem "gitolite", :git => "https://github.com/wingrunr21/gitolite.git"
-
-
-gem "haml"
-gem "haml-rails"
-
-gem "seed-fu"
+gem "haml-rails", "~>0.3.4"
+gem "seed-fu", "~> 2.2.0"
 gem "faker"
-gem "stamp"
+gem 'stamp'
 
 group :development do
   gem 'pry-rails'
   gem 'pry-doc'
 end
-gem 'resque', :require => "resque/server"
+gem 'resque', "~>1.20.0", :require => "resque/server"

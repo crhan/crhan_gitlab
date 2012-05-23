@@ -8,13 +8,20 @@
 .well
   .input-prepend.form-inline
     %span.add-on> git clone
-    %input.span6{ :value => "git@#{GIT_HOST["host"]}:#{@project.path}.git" }
+    %input.span6{ :value => project_clone_path(@project) }
 
 - unless @project.description.blank?
-  %h3 Description
+  %h1 Description
+  %hr
   .well
     = @project.description
 
+%hr
+
+%h1 Events
+%hr
+%ul.events
+  = render @events
 -#
   %div
     = link_to "Back to index", [:projects]

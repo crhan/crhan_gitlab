@@ -8,3 +8,9 @@
 %table.table.table-striped
   %tbody
     = render :partial => "index", :locals => {:projects => @projects}
+
+%h1 Activities
+%hr
+
+%ul.events
+  = render @last_5_activities

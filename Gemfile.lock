@@ -184,19 +184,18 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
-  devise
+  devise (~> 2.0.4)
   faker
   gitolite!
-  grit
-  haml
-  haml-rails
+  grit (~> 2.5.0)
+  haml-rails (~> 0.3.4)
   jquery-rails
   pry-doc
   pry-rails
   rails (= 3.2.3)
-  resque
+  resque (~> 1.20.0)
   sass-rails (~> 3.2.3)
-  seed-fu
+  seed-fu (~> 2.2.0)
   sqlite3
   stamp
   therubyracer
