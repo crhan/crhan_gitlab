@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
     @project.owner = User.find(owner_id)
     @project.current_user_id = current_user.id
 
-    @project.save
+    @project.save!
     # create owner as the master
     @project.set_owner_as_master
 

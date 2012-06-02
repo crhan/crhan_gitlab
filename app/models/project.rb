@@ -88,7 +88,7 @@ class Project < ActiveRecord::Base
         id: commit.id,
         message: commit.safe_message,
         timestamp: commit.date.xmlschema,
-        url: "http://#{GIT_HOST['host']}/projects/#{project.id}/commits/#{commit.id}",
+        url: "http://#{GIT_HOST['host']}/projects/#{self.id}/commits/#{commit.id}",
         author: {
           name: commit.author_name,
           email: commit.author_email
@@ -135,6 +135,13 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def set_owner_as_master
+    self.user_projects.create(
+      :project_access => UserProject::MASTER,
+      :user => self.owner
+    )
+  end
+
   private
   def update_path
     self.path = self.name.gsub(/\s+/,"_").downcase
@@ -161,13 +168,6 @@ class Project < ActiveRecord::Base
       :project => self,
       :action => Event::Updated,
       :author_id => current_user_id
-    )
-  end
-
-  def set_owner_as_master
-    self.user_projects.create(
-      :project_access => UserProject::MASTER,
-      :user => self.owner
     )
   end
 end

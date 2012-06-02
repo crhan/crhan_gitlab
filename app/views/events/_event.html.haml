@@ -2,7 +2,7 @@
   = event.author_email
   - if event.push?
     %span.label.label-warning PUSHED
-    to ref at
+    to #{event.data[:ref].gsub(/[\w\/]+\//,'').upcase} at
   - if event.create?
     %span.label.label-success CREATED
     Project Named
